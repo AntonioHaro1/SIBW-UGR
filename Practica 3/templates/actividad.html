@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="WrapperExplicacionActividad">
+    <div class="SeccionTituloActividad">
+        <h1>{{actividad.Titulo}}</h1>
+    </div>
+
+    <img class="SeccionIcono" src="ImagenesActividades/images2.jpeg"></img>
+
+    <div class="SeccionPrecioActividad">
+        <h2>Fecha: {{ actividad.Fecha}} </h2>
+        <h2>Coste: {{ actividad.Precio}}€ </h2>     
+    </div>
+
+    <div class="SeccionExplicacion">
+        {{ actividad.Descripcion | raw }}
+        <u class="Texto">Duración estimada de la actividad <strong> {{actividad.Duracion}}</strong></u>
+    </div>
+
+    
+    
+    <!-- SECCION FOTOS DE LA ACTIVIDADES-->    
+    <div class="SeccionFotos1">
+        <!-- ELEMENTOS PARA MOSTRA GRAFICOS Y SUS LEYENDAS DE MANERA QUE NO SE DESCOLOQUEN CON ZOOM ETC-->
+        {% for imagen in imagenes %}
+            {% if imagen.principal == false and imagen.idActividad == actividad.idActividad %}
+                <figure>
+                    <img class="ImagenActividad" src="{{ imagen.source}}" alt="Foto de actividad">
+                    <figcaption><em>{{ imagen.descripcion}}</em></figcaption>
+            </figure>
+            {% endif %}
+        {% endfor %} 
+    </div>
+    <div class="SeccionImprimir">
+        <a class="BoxA" href="https://www.instagram.com/"><img class="ImagenLogo" src="Logos/cd939-logo-instagram-png.png"></img></a>
+        <a class="BoxA" href="https://www.facebook.com/"><img class="ImagenLogo" src="Logos/facebook-logo-black-transparent.png"></img></a>
+        <a class="BoxA" href="https://web.whatsapp.com/"><img class="ImagenLogo" src="Logos/whatsapp-logo-png.png"></img></a>
+        <div><a class="BoxA" href="actividadImprimir.php?id={{ actividad.idActividad }}"><h1 class="SeccionImprimir2">Imprimir</h1></a></div> <!-- Con el div la hitbox esta correcta-->
+    </div>
+</div>
+<!-- Seccion de comentarios (Practica 2)-->
+<div id="seccionComentarios" class="Comentarios" >
+    <!-- boton para abrir comentarios cuando lo pulsas-->
+    <button type="button" id="botonComentarios" class="BotonSimple" onclick="AbrirComentarios()"></button>
+    <h3 id="h3" class="ComentariosH3">¡ Comenta sobre tu experiencia !</h3>
+    <!-- Dentro de este div se crearan los hijos para tener la lista de comentarios-->
+    <div id="listaComentarios" class="ListaComentarios" >
+        {% for comentario in comentarios %}
+            <div class="EstructuraComentarios">
+                <span class='NombreComentario'><img class='ImagenComentario' src='Logos/usuario.png'> {{ comentario.nombre }} <small class='FechaComentario'>{{ comentario.fecha ~ ' ' ~ comentario.hora }}</small></span><p class='TextoComentario'>{{ comentario.comentario }}</p>
+            </div>
+        
+        {% endfor %} 
+
+    </div>
+
+    <h3 id="h32" class="ComentariosH3">! Deja aqui tu comentario !</h3>
+    <!-- Antes usaba form pero al no tener nada relacionado a servidor y htpp no es necesario y lo deje como div -->
+    <form id="formularioComentario" class="FormularioComentario" method="post">
+        <!-- Etiquetamos cada input con un label-->
+        <input type="hidden" name="id" value="{{ actividad.idActividad }}">
+
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" placeholder="Introduzca su nombre">
+            
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="Ejemplo: Pablo21@gmail.com" >
+        <!-- oninput significa que cada vez que haya un cambio se realiza la funcion especificada-->
+        <label for="nuevoComentario">Comentario:</label>
+        <textarea id="nuevoComentario" name="nuevoComentario" placeholder="Escribe tu comentario aquí" onkeyup="BuscarComentario()" ></textarea>
+        <!-- boton para enviar comentario-->
+        <button type="button" onclick="agregarComentario()">Enviar Comentario</button>
+    </form>
+        
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!--<script src="../funciones.js">-->
+<script>
+    var PalabrasProhibidas = {{ palabrasprohibidas | json_encode | raw }};
+    var terminaciones = {{ correosposibles | json_encode | raw }};
+ 
+</script>
+<script src="/funciones.js"></script>
+{% endblock %}

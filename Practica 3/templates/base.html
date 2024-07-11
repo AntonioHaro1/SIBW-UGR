@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Mister Montaña</title>
+    {% block css %}<link rel="stylesheet" type="text/css" href="Estilos.css">{% endblock %}
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Yellowtail&display=swap" rel="stylesheet">
+</head>
+<body class="Body">
+    <header class="WrapperTitulo">
+        <img class="BoxTituloImagen" src="ImagenesActividades/images2.jpeg" alt="Imagen del título">
+        <h1 class="BoxTitulo">Mister Montaña</h1> 
+        <nav class="BoxMenus">
+            <h3>Menu1</h3>
+            <h3>Menu2</h3>  
+            <h3>Menu3</h3>
+        </nav> 
+    </header>
+
+    <main class="WrapperCuerpo">
+        <!-- SECCION ENLACES-->
+        <div class="BoxEnlaces">
+            {% for anuncio in anuncios %}
+                <a class="BoxEnlacesBox" href="{{ anuncio.urlAnuncio}}">
+                    <img class="ImagenActividadPortada" src="{{ anuncio.urlImagen }}">
+                    <h1 class="ActividadNombre">{{ anuncio.Titulo }}</h1>
+                </a>
+            {% endfor %}
+        </div>
+
+        {% block content %}{% endblock %}
+
+    </main>  
+
+    <footer class="CopyRigth">
+        <h3>&copy; SIBW - Antonio Haro Arriaza - 2024 - Contacto: Antonioharoarriaza1@gmail.com</h3>
+    </footer>
+</body>
+</html>

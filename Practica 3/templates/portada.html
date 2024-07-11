@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="BoxActividades">
+        {% for actividad in actividades %}
+            <a class="BoxActividadesBox" href="actividad.php?id={{ actividad.idActividad }}">
+                {% for imagen in imagenes %}
+                    {% if imagen.principal == true and imagen.idActividad == actividad.idActividad %}
+                        <img class="ImagenActividadPortada" src="{{ imagen.source }}">
+                    {% endif %}
+                {% endfor %}
+                <h1 class="ActividadNombre">{{ actividad.Titulo }}</h1>
+            </a>
+        {% endfor %}
+    </div>
+{% endblock %}

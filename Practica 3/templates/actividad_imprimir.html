@@ -1,0 +1,42 @@
+{% extends 'actividad.html' %}
+
+{% block css %} <link rel="stylesheet" type="text/css" href="EstilosImprimir.css">{% endblock %}
+
+{% block content %}
+<div class="WrapperExplicacionActividad">
+    <div class="SeccionTituloActividad">
+        <h1>{{actividad.Titulo}}</h1>
+    </div>
+
+    <img class="SeccionIcono" src="ImagenesActividades/images2.jpeg"></img>
+
+    <div class="SeccionPrecioActividad">
+        <h2>Fecha: {{ actividad.Fecha}} </h2>
+        <h2>Coste: {{ actividad.Precio}}€ </h2>     
+    </div>
+
+    <div class="SeccionExplicacion">
+        {{ actividad.Descripcion | raw }}
+        <u class="Texto">Duración estimada de la actividad <strong> {{actividad.Duracion}}</strong></u>
+    </div>
+    <!-- SECCION FOTOS DE LA ACTIVIDADES-->    
+    <div class="SeccionFotos1">
+        <!-- ELEMENTOS PARA MOSTRA GRAFICOS Y SUS LEYENDAS DE MANERA QUE NO SE DESCOLOQUEN CON ZOOM ETC-->
+        {% for imagen in imagenes %}
+            {% if imagen.principal == false and imagen.idActividad == actividad.idActividad %}
+                <figure>
+                    <img class="ImagenActividad" src="{{ imagen.source}}" alt="Foto de actividad">
+                    <figcaption><em>{{ imagen.descripcion}}</em></figcaption>
+            </figure>
+            {% endif %}
+        {% endfor %} 
+    </div>
+    <div class="SeccionImprimir">
+        <a class="BoxA" href="https://www.instagram.com/"><img class="ImagenLogo" src="Logos/cd939-logo-instagram-png.png"></img></a>
+        <a class="BoxA" href="https://www.facebook.com/"><img class="ImagenLogo" src="Logos/facebook-logo-black-transparent.png"></img></a>
+        <a class="BoxA" href="https://web.whatsapp.com/"><img class="ImagenLogo" src="Logos/whatsapp-logo-png.png"></img></a>
+        <div><a class="BoxA" href="actividadImprimir.php?id={{ actividad.idActividad }}"><h1 class="SeccionImprimir2">Imprimir</h1></a></div> <!-- Con el div la hitbox esta correcta-->
+    </div>
+</div>
+
+{% endblock %}
