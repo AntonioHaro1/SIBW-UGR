@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+
+
+
+{% block content %}
+
+<div id="BoxActividades" class="BoxActividades">
+    {% for actividad in actividades %}
+        {% if rol == 'super' or rol == 'gestor' or actividad.publicado == 1 %}
+            {% if actividad.publicado == 0 %}
+                <a class="BoxActividadesBox" style=" background-color: rgba(255, 0, 0, 0.4);" href="actividad.php?id={{ actividad.id }}">
+                    {% for imagen in imagenes %}
+                        {% if imagen.principal == 1 and imagen.idActividad == actividad.id %}
+                            <img class="ImagenActividadPortada" src="{{ imagen.urlImagen }}">
+                        {% endif %}
+                    {% endfor %}
+                    <h1 class="ActividadNombre">{{ actividad.titulo }}</h1>
+                    <p class="ActividadDescripcion" style="display: none;">{{ actividad.descripcion}}</p>
+                </a>
+            {%  else %}
+            <a class="BoxActividadesBox" href="actividad.php?id={{ actividad.id }}">
+                {% for imagen in imagenes %}
+                    {% if imagen.principal == 1 and imagen.idActividad == actividad.id %}
+                        <img class="ImagenActividadPortada" src="{{ imagen.urlImagen }}">
+                    {% endif %}
+                {% endfor %}
+                <h1 class="ActividadNombre">{{ actividad.titulo }}</h1>
+                <p class="ActividadDescripcion" style="display: none;">{{ actividad.descripcion}}</p>
+            </a>
+               
+            {% endif %} 
+        {% endif %}
+    {% endfor %}
+</div>
+
+    <div class="BoxActividades" id="results"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+
+    var Imagenes = {{ imagenes  | json_encode | raw}};
+    var rol = {{ rol | json_encode | raw}};
+
+   
+</script>
+<script src="/funciones.js"></script>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<div class="login-wrapper">
+    <div class="Login">
+        <h2>Iniciar Sesión</h2>
+        <form method="post" class="FormularioLogin">
+            <label for="username">Usuario</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">Contraseña</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit">Entrar</button>
+        </form>
+        <a href="registrar.php"> ¿no tienes cuenta? pincha aqui</a>
+    </div>
+</div>
+
+
+{% endblock %} 
+{% block anuncios %}{% endblock %} 
+{% block content %} 
+{% endblock %}

@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+    <div class="perfil-wrapper">
+        <div class="perfil">
+            <div>
+                <h1> Bienvenido a tu perfil</h1>
+    
+    
+                <div class="divAlign">
+                    <strong>Nombre completo : </strong> {{ usuario.nombre_completo }}
+                    <button class="boton-modificar" onclick="abremodificarnombrecompleto()"><img src="/Logos/iconomodificar.png" class="ImagenLogo3"></button>
+                </div>
+                <div class="Formulario" id="FormularioNombrecompleto">
+                    <form method="POST" id="postNombreCompleto">
+                        <input type="hidden" name="opcion" value="nombrecompleto">
+                        <label for="nombre">Nombre nuevo:</label>
+                        <input type="text" id="nombre" name="nombre" required>
+                        <button type="button" onclick="comprobarNombreCompleto()">Enviar</button>
+                    </form>
+                </div>
+    
+    
+    
+                <div class="divAlign">
+                    <strong>Nombre de usuario : </strong> {{ usuario.username }}
+                    <button class="boton-modificar" onclick="abremodificarusuario()"><img src="/Logos/iconomodificar.png" class="ImagenLogo3"></button>
+                </div>
+                <div class="Formulario" id="FormularioUsuario">
+                    <form method="POST" id="postnick">
+                        <input type="hidden" name="opcion" value="nombreusuario">
+                        <label for="usuario">Nick nuevo:</label>
+                        <input type="text" id="usuario" name="usuario" required>
+                        <button type="button" onclick="comprobarNick()">Enviar</button>
+                    </form>
+                </div>
+    
+    
+    
+                <div class="divAlign">
+                    <strong>Contraseña : </strong> *******
+                    <button class="boton-modificar" onclick="abremodificarcontraseña()"><img src="/Logos/iconomodificar.png" class="ImagenLogo3"></button>
+                </div>
+                <div class="Formulario" id="Formulariocontraseña">
+                    <form method="POST" id="postcontraseña">
+                        <input type="hidden" name="opcion" value="contrasea">
+                        <label for="contrasea">Contraseña nueva:</label>
+                        <input type="text" id="contrasea" name="contrasea" required>
+                        <button type="button" onclick="comprobarContraseña()">Enviar</button>
+                    </form>
+                </div>
+    
+    
+    
+                <div class="divAlign">
+                    <strong>Email : </strong> {{ usuario.email }}
+                    <button class="boton-modificar" onclick="abremodificaremail()"><img src="/Logos/iconomodificar.png" class="ImagenLogo3"></button>
+                </div>
+                <div class="Formulario" id="Formularioemail">
+                    <form method="POST" id="postemail" >
+                        <input type="hidden" name="opcion" value="email">
+                        <label for="email">email nuevo:</label>
+                        <input type="text" id="email" name="email" required>
+                        <button type="button" onclick="comprobarCorreo()">Enviar</button>
+                    </form>
+                </div>
+
+            </div>
+
+            <a href="logout.php" class="cerrar-sesion">Cerrar sesión</a>
+            {% if rol == 'gestor' or rol == 'super' %}
+            <a href="AñadirActividad.php" class="añadir-actividad">Añadir actividad</a>
+            {% endif %}
+            {% if rol == 'super' %}
+            <h1>Lista de Usuarios y Roles</h1>
+            <div class="ListaUsuarios">
+            {% set contador = 1 %}
+            {% for permiso in permisos %}
+                <div class="EstructuraUsuarios">
+                    <div >{{ permiso.username }} tiene permisos de </div>
+                    <div>{{ permiso.rol }}</div>
+                    <form method="POST" class="seleccionarRolForm" id="seleccionarRolForm{{ contador }}">
+                        <!-- Campo oculto para almacenar el rol seleccionado -->
+                        <input type="hidden" id="rolSeleccionado{{contador}}" name="rolSeleccionado" >
+                        <input type="hidden" name="nick" value="{{ permiso.username}}">
+                        <input type="hidden" name="opcion" value="permiso">
+                        <!-- Botones para seleccionar el rol -->
+                        <button class="button" type="button" onclick="seleccionado('usuario', {{contador}})" id="usuario{{contador}}">Usuario</button>
+                        <button class="button" type="button" onclick="seleccionado('moderador',{{ contador }})" id="moderador{{contador}}">Moderador</button>
+                        <button class="button" type="button" onclick="seleccionado('gestor', {{ contador }})" id="gestor{{contador}}" >Gestor</button>
+                        <button class="button" type="button" onclick="seleccionado('super', {{ contador }})" id="super{{contador}}" >Super</button>
+            
+                        <!-- Botón para enviar el formulario -->
+                        <button type="button" onclick="postformulariopermiso({{contador}},'{{permiso.rol}}', '{{permiso.username}}')">Cambiar</button>
+                    </form>
+                </div>
+                {% set contador = contador + 1 %}
+            {% endfor %}
+            </div>
+            {% endif %}
+
+            {% if rol == 'super' or rol == 'moderador' %}
+            <h1>Lista de comentarios</h1>
+            <div class="ListaComentarios2">
+                {% for comentario in comentarios %}
+                    {% for actividad in nombresActividades %}
+                        {% if actividad.id == comentario.idActividad %}
+                            <div class="EstructuraComentarios"> 
+                                <p class="texto">Actividad: {{ actividad.titulo }}</p>
+                                <p>Comentario: {{ comentario.comentario }}</p>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            </div>
+            
+            {% endif %}
+            {% block busqueda %}
+           
+            {% endblock %}
+            {% if rol == 'super' or rol == 'gestor' %}
+            <div><h1>Lista de actividades</h1><input type="text" id="searchInput" onkeyup="busqueda()" placeholder="Buscar..."> </div>
+            <div class="BoxActividades">
+                {% for actividad in actividades %}
+                    <a class="BoxActividadesBox" href="actividad.php?id={{ actividad.id }}">
+                        <h1 class="ActividadNombre">{{ actividad.titulo }}</h1>
+                        <p class="ActividadDescripcion">{{ actividad.descripcion}}</p>
+                    </a>
+                {% endfor %}
+        
+            </div>
+            {% endif %}
+        </div>
+
+    </div>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    var PalabrasProhibidas = {{ palabrasprohibidas | json_encode | raw }};
+    var terminaciones = {{ correosposibles | json_encode | raw }};
+    var usuarios = {{ usuarios | json_encode | raw  }};
+    var supers = {{ supers | json_encode | raw  }};
+    var permisos = {{ permisos | json_encode | raw}};
+
+
+
+ 
+</script>
+<script src="/funciones.js"></script>
+
+{% endblock %} 
+{% block footer %}
+{% endblock %}
+
+

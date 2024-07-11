@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block busqueda %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<div style="display: none;"><p> Busqueda: </p><input type="text" id="searchInput" placeholder="Buscar..."> <button id="boton"  onclick="busquedaAjax()" > Buscar</button> </div>
+{% endblock %}
+
+{% block main %}
+
+    <div class="perfil-wrapper">
+        <div class="perfil">
+            <div>
+
+                <div>
+                    <form method="POST" id="postmodificarActividad">
+                        <input type="hidden" name="id" value="{{actividad.id}}">
+                        <label for="titulo">Titulo:</label>
+
+                        <input  id="titulo" name="titulo" value="{{ actividad.titulo }}" class="EstiloInput" required>
+
+                        <label for="precio">Precio:</label>
+                        <input id="precio" name="precio" value="{{ actividad.precio }}" class="EstiloInput" required >
+
+                        <label for="fecha">Fecha:</label>
+                        <input id="fecha" name="fecha" value="{{ actividad.fecha }}" class="EstiloInput" required >
+
+                        <label for="duracio">Duracion:</label>
+                        <input id="duracion" name="duracion" value="{{ actividad.duracion }}" class="EstiloInput" required >
+
+                        <label for="descripcion">Descripcion:</label>
+                        <textarea id="descripcion" name="descripcion"  >{{ actividad.descripcion }}</textarea>
+                        <button type="button" onclick="modificarActividad()" style="margin-top: 10px;" >Modificar Actividad</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/funciones.js"></script>
+
+{% endblock %} 
+{% block footer %}
+{% endblock %}
+
+

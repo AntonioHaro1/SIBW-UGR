@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mister Montaña</title>
+    {% block css %}<link rel="stylesheet" type="text/css" href="Estilos.css">{% endblock %}
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Yellowtail&display=swap" rel="stylesheet">
+</head>
+
+<body class="Body">
+    <header class="WrapperTitulo">   
+
+            <a class="BoxTituloImagen" href="index.php"><img class="BoxTituloImagen" src="ImagenesActividades/images2.jpeg" alt="Imagen del título"></a>
+            <a class="BoxTitulo" href="index.php"><h1 class="BoxTitulo">Mister Montaña</h1> </a>
+
+        <nav class="BoxMenus">
+            <h3>Menu1</h3>
+            <h3>Menu2</h3>  
+            <h3>Menu3</h3>
+        </nav> 
+        {% block busqueda %}
+            <div><p> Busqueda: </p><input type="text" id="searchInput" onkeyup="busqueda()" placeholder="Buscar..."> </div>
+        {% endblock %}
+
+        {% if logueado == true %}
+            <a class="BoxAx" href="verperfil.php"><img class="ImagenLogo2" src="Logos/usuario.png"></img> {{ username }} </a>
+        {% endif %}
+
+        {% if logueado == false %}
+            <a class="BoxAx" href="login.php"><img class="ImagenLogo2" src="Logos/usuario.png"></img> iniciar sesion</a>
+        {% endif %}
+
+    </header>
+    {% block main %}
+    <main class="WrapperCuerpo">
+        {% block anuncios %}
+        <!-- SECCION ENLACES-->
+        <div class="BoxEnlaces">
+            {% for anuncio in anuncios %}
+                <a class="BoxEnlacesBox" href="{{ anuncio.urlAnuncio}}">
+                    <img class="ImagenActividadPortada" src="{{ anuncio.urlImagen }}">
+                    <h1 class="ActividadNombre">{{ anuncio.Titulo }}</h1>
+                </a>
+            {% endfor %}
+        </div>
+    {% endblock %}
+
+    {% block content %}
+    {% endblock %}
+    </main>  
+    {% endblock %}
+
+    {% block footer %}
+    <footer class="CopyRigth">
+        <h3>&copy; SIBW - Antonio Haro Arriaza - 2024 - Contacto: Antonioharoarriaza1@gmail.com</h3>
+    </footer>
+    {% endblock %}
+
+</body>
+</html>

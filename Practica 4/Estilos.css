@@ -1,0 +1,675 @@
+/* justify para el eje horizontal y align para el eje vertical
+    items para que los items dentro de ese div o seccion esten ya centrados
+    content para que se centre los items dentro de esa box 
+    self para que se centre solo ese item dentro una box que los demas items no quieres centrar 
+
+    EN GRID un poco diferente con el justify items para centrar dentro de cada contenedor grid
+*/
+
+.Body{
+    background-color: rgb(119, 165, 175);
+}
+
+/* WRAPPER PARA EL BOCADILLO DEL TITULO TANTO IMAGEN COMO NOMBRE Y MENUS*/
+.WrapperTitulo {
+    display: grid;
+    grid-template-columns: [col1-start] 200px [col2-start] 1fr [col3-start] 2fr [col4-start] auto [col4-end]; /* Ajusta las columnas */
+    grid-template-rows: [row1-start] 120px [row2-start] 30px [row2-end];
+    align-items: center;
+    justify-content: center;
+    border: 2px solid black;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    padding: 10px; /* Para añadir algo de espacio interno */
+}
+
+/* Caja para el titulo */
+.BoxTitulo {
+    grid-column: col3-start / col4-start;
+    grid-row: row1-start;
+    color: black;
+    font-family: "Bebas Neue";
+    font-weight: 500;
+    font-style: italic;
+    font-size: 50px;
+    margin-bottom: 10px;
+    text-decoration: none;
+    
+}
+
+/* Caja para la imagen */
+.BoxTituloImagen {
+    grid-column: col2-start / col3-start;
+    grid-row: row1-start;
+    border-radius: 20px;
+    justify-self: center; /* Centro la imagen */
+    width: 80px;
+    height: 80px;
+}
+
+/* Caja para los menus */
+.BoxMenus {
+    grid-column: col2-start / col4-start; 
+    grid-row: row2-start;
+    display: flex;
+    flex-direction: row; /* Para que los menus se vean en horizontal */
+    justify-content: space-around; /* Espacio alrededor de los elementos */
+}
+
+/* Enlace de usuario */
+.BoxAx {
+    grid-column: col4-start / col4-end;
+    grid-row: row1-start;
+    justify-self: end; /* Alinear a la derecha */
+    align-self: center; /* Centrar verticalmente */
+    display: flex;
+    align-items: center; /* Centrar el contenido del enlace verticalmente */
+    gap: 5px; /* Espacio entre el icono y el texto */
+    text-decoration: none; 
+    color: black;
+    font-family: "Bebas Neue" ;
+    font-size: x-large;
+}
+
+.ImagenLogo2 {
+    height: 50px;
+}
+
+
+
+/* WRAPPER PARA LOS ELEMENTOS AUXILIARES Y ACTIVIDADES*/
+.WrapperCuerpo {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-gap: 20px;
+    overflow: auto;
+}
+
+/*Elementos auxiliares que actuan como enlace*/
+.BoxEnlaces{
+    display: flex;
+    flex-direction: column; /* VERTICAL*/
+    text-align: center;
+    border: 2px solid black;
+    border-radius: 20px;
+    /*align-items: center;   Align en vez de justify por que al mostrarlo en vertical los ejes se invierten (CREO) lo uso con las fichas que no se alargan */
+}
+
+.BoxEnlacesBox{
+    display: flex; /* para que la imagen y el titulo sean manejables sin esto no me dejaba poner la imagen en el centro */
+    flex-direction: column;
+    border: 2px solid black;
+    border-radius: 20px;
+    margin: 10px;
+    text-decoration: none; /* Para que los enlaces se vean color negro la letra y sin subrayar*/
+    color: black;
+    /*justify-self: center; /* Nose cual seria la correcta. Esto hacer que las fichas de los enlaces se hagan pequeñas en vez de alargarse
+    min-width: 400px;
+    max-width: 400px;*/
+}
+
+/*Cuando pasa el cursor por encima*/
+.BoxEnlacesBox:hover{ 
+    opacity: 30%;               /* Opacity para que el cambio de color de fondo tambien se note en las imagenes*/
+    background-color: rgb(60, 100, 130);
+    cursor: pointer; 
+}
+
+/*Caja donde se situan las actividades*/
+.BoxActividades{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    border: 2px solid black;
+    border-radius: 20px;
+}
+
+/*Caja de las actividades propias con nombre e imagen*/
+.BoxActividadesBox{
+    display: flex; /* para que la imagen y el titulo sean manejables sin esto no me dejaba poner la imagen en el centro */
+    flex-direction: column;
+    border: 2px solid black;
+    border-radius: 20px;
+    margin: 10px;
+    text-decoration: none; /* Para que los enlaces se vean color negro la letra y sin subrayar*/
+    color: black;
+    /*justify-self: center; /*Nose cual seria la correcta. Esto hacer que las fichas de actividades se hagan pequeñas en vez de alargarse
+    min-width: 450px;
+    max-width: 450px;*/
+}
+
+/*Cuando pasa el cursor por encima*/
+.BoxActividadesBox:hover{ 
+    opacity: 30%;               /* Opacity para que el cambio de color de fondo tambien se note en las imagenes*/
+    background-color: rgb(60, 100, 130);
+    cursor: pointer; 
+}
+
+/*ImagenActividades en la portada*/
+.ImagenActividadPortada{
+    height: 200px;
+    border-radius: 20px;
+}
+
+/*Texto para las actividades*/
+.ActividadNombre{
+    text-align: center;
+    padding-left: 10px;
+}
+
+/*Caja donde se situa el copyrigth*/
+.CopyRigth {
+    margin-top: 10px;
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 10px;
+    text-align: center;
+}
+
+.ImagenLogo{
+    height: 100px;
+    border-radius: 20px;
+}
+
+/*Grid donde se pone la explicacion de la actividad*/
+.WrapperExplicacionActividad {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: 1fr 1fr 6fr 1fr;
+    border: 2px solid black;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    justify-items: center;
+    align-items: center;
+}
+
+/*ICONO para mostrar en imprimir*/
+.SeccionIcono{
+    display: none; /* No lo muestro en actividad porque solo es para imprimir y usar mas tarde*/
+}
+
+/*SECCIONES PARA LA EXPLICACIONES TANTO FECHA, TITULO, DESCRIPCION,FOTOS,IMPRESION Y REDES SOCIALES ETC*/
+.SeccionTituloActividad{
+    grid-row: 1;
+    grid-column: 1;
+
+}
+
+.SeccionPrecioActividad{
+    grid-row: 2;
+    grid-column: 1;
+
+}
+
+.SeccionExplicacion{
+    grid-row: 3;
+    grid-column: 1;
+    margin-left: 30px;
+    min-width: 600px; /*Para que no sea vea muy pequeño*/
+}
+
+.SeccionFotos1{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    grid-row: 1 / 4;
+    grid-column: 2;
+    padding: 10px;
+    margin-right: 40px;
+    margin-top: 30px;
+    align-self: start;
+}
+
+.ImagenActividad{
+    height: 300px;
+    width: 400px;
+    border-radius: 20px;
+}
+
+
+.SeccionImprimir{
+    grid-row: 4;
+    grid-column: 1/end;
+    display: flex;
+    flex-direction: row;
+    gap: 60px;
+}
+
+.SeccionImprimir2{
+    padding: 20px;
+    border: 2px solid black;
+    border-radius: 20px;
+}
+
+.Texto{
+    font-size: x-large;
+}
+
+/*Etiqueta que me ayudo a evitar que la etiqueta a cambiase el formate de letra o color*/
+.BoxA{
+    text-decoration: none;
+    color: black;
+    justify-self: center;
+    align-self: center;
+    border-radius: 20px;
+}
+
+.BoxA:hover{
+    text-decoration: none;
+    color: black;
+    opacity: 40%;
+    cursor: pointer; 
+}
+
+
+/*PRACTICA 2*/
+
+.Comentarios{
+    display: flex;
+    flex-direction: column;
+    justify-self: end;
+    border-radius: 20px;
+    position: absolute;
+    background-color:  transparent;
+    padding: 10px;
+    overflow: auto;
+}
+
+.ComentariosAbiertos{
+    display: flex;
+    flex-direction: column;
+    justify-self: end;
+    align-items: center;
+    border-radius: 20px;
+    height: auto;
+    min-width: 450px;
+    max-width: 1300px;
+    border: 2px solid black;
+    position: absolute;
+    background-color:  rgb(119, 165, 175);
+    opacity: 95%;
+    padding: 10px;
+    overflow: auto;
+}
+
+.BotonSimple{
+    display: flex;
+    height: 150px;
+    width: 150px;
+    border-radius: 20px;
+    background-color:  transparent;
+    background-image: url(Logos/comentarios.png);  
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: none; 
+    padding: 10px;
+}
+
+.BotonSimple:hover{
+    background-color: rgb(60, 100, 130);
+    opacity: 40%;  
+    cursor: pointer;  
+}
+
+.BotonSimple2{
+    display: flex;
+    align-self: end;
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+    background-color:  transparent;
+    background-image: url(Logos/cerrar.png);  
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: none; 
+}
+
+.BotonSimple2:hover{
+    background-color: rgb(60, 100, 130);
+    opacity: 40%;
+    cursor: pointer;
+}
+
+.ListaComentarios{
+    display: none;
+    justify-content: stretch;
+    flex-direction: column;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.EstructuraComentarios{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    flex-direction: row;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 2px solid black;
+    border-radius: 20px;
+    background-color: rgb(90, 140, 170);
+}
+
+.ImagenComentario{
+    width: 28px;
+    height: 28px;
+    margin-right: 5px;
+}
+
+.NombreComentario{
+    grid-column: 1;
+    grid-row: 1;
+    color: black;
+    font-family: "Bebas Neue" ;
+    font-size: xx-large;
+    font-weight: 500;
+    font-style: italic;
+}
+
+.FechaComentario{
+    color: black;
+    font-size: large;
+    font-style: italic;
+    margin-left: 10px;  
+}
+
+.TextoComentario{
+    grid-column: 1 / end;
+    grid-row: 2;
+    color: black;
+    font-weight: 200;
+    font-size: 25px;
+}
+
+.FormularioComentario{
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    width: 400px;
+}
+
+.ComentariosH3{
+    display: none;
+    font-family: "Bebas Neue" ;
+    font-weight: 500;
+    font-size: 30px;
+}
+
+/* PRACTICA 4 */
+
+/* Contenedor que envuelve el formulario de login */
+.login-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+/* Estilos del formulario de login */
+.Login{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border: 2px solid black;
+    border-radius: 5px;
+    width: 100%;
+    height: 65vh;
+}
+
+.FormularioLogin{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 400px;
+}
+
+.perfil-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    border: 2px solid black;
+    width: auto;
+    height: auto;
+
+}
+
+.perfil-wrapper table{
+    max-height: 100%;
+}
+.perfil{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Estilo para el enlace de Cerrar Sesión */
+a.cerrar-sesion {
+    padding: 10px; /* Añadir espacio alrededor del texto */
+    background-color: #d63031; /* Color de fondo rojo */
+    color: black; /* Color del texto */
+    text-decoration: none; /* Quitar subrayado del enlace */
+    border-radius: 5px; /* Añadir esquinas redondeadas */
+    margin-top: 20px; /* Margen superior para separarlo del contenido anterior */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Añadir una sombra sutil */
+}
+
+a.cerrar-sesion:hover {
+        opacity: 0.8;  
+        cursor: pointer;  
+}
+
+.formularioPerfil{
+    display: none;
+}
+
+.divAlign{
+    display: flex;
+    align-items: center;    
+}
+
+.nombre-completo strong{
+    display: flex;
+    align-items: center;
+    padding-right: 10px;
+    
+}
+
+.ImagenLogo3 {
+    width: 50px; /* Ajusta el tamaño según sea necesario */
+    height: auto; /* Permite que la altura se ajuste automáticamente */
+    margin-left: 10px; /* Ajusta el espacio entre el texto y la imagen */
+
+}
+
+.ImagenLogo4 {
+    width: 100px; /* Ajusta el tamaño según sea necesario */
+    height: auto; /* Permite que la altura se ajuste automáticamente */
+}
+
+.ImagenLogo5 {
+    width:75px; /* Ajusta el tamaño según sea necesario */
+    height: auto; /* Permite que la altura se ajuste automáticamente */
+}
+
+.boton-modificar {
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.boton-modificar:hover{
+    opacity: 0.4;
+    
+}
+
+.Formulario{
+    display: none;
+}
+
+
+.ListaUsuarios{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.EstructuraUsuarios{
+    display: grid;
+    grid-template-columns:auto auto auto;
+    grid-template-rows: auto 1fr;
+    flex-direction: row;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 2px solid black;
+    border-radius: 20px;
+    background-color: rgb(90, 140, 170);
+    gap: 10px;
+}
+
+/* Estilo base del botón */
+.buttonborrar {
+    background-color: red; /* Color de fondo claro */
+    border: 1px solid #ccc; /* Borde gris */
+    border-radius: 5px; /* Bordes redondeados */
+    color: #333; /* Color del texto */
+    margin-left: 5px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s; /* Transición suave */
+}
+
+/* Estilo cuando se pasa el ratón por encima */
+.buttonborrar:hover {
+    margin-left: 5px;
+    background-color: #ff4d4d; /* Cambia el color de fondo al pasar el ratón */
+    color: #fff; /* Cambia el color del texto al pasar el ratón */
+}
+
+
+/* Estilo base del botón */
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #f0f0f0; /* Color de fondo claro */
+    border: 1px solid #ccc; /* Borde gris */
+    border-radius: 5px; /* Bordes redondeados */
+    color: #333; /* Color del texto */
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s; /* Transición suave */
+}
+
+/* Estilo cuando se pasa el ratón por encima */
+.button:hover {
+    background-color: #ddd; /* Color de fondo más claro */
+    color: #222; /* Color del texto más oscuro */
+}
+
+.buttonSeleccionado {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #f0f0f0; /* Color de fondo claro */
+    border: 4px solid yellowgreen; /* Borde gris */
+    border-radius: 5px; /* Bordes redondeados */
+    color: #333; /* Color del texto */
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s; /* Transición suave */
+}
+
+textarea {
+    width: 100%;
+    height: 150px; /* Ajusta la altura según sea necesario */
+    font-size: 16px; /* Tamaño de fuente para mejor legibilidad */
+    border-radius: 10px; /* Bordes redondeados */
+}
+
+.ListaComentarios2{
+    display: flex;
+    justify-content: stretch;
+    flex-direction: column;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.EstructuraComentarios2{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    flex-direction: row;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 2px solid black;
+    border-radius: 20px;
+    background-color: rgb(90, 140, 170);
+    text-decoration-style: solid;
+}
+
+.EstiloInput{
+    width: 100%;
+    box-sizing: 
+    border-box; 
+    padding: 10px; 
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+/* Estilo para el enlace de Cerrar Sesión */
+a.añadir-actividad {
+    padding: 10px; /* Añadir espacio alrededor del texto */
+    background-color: 
+    blue; /* Color de fondo rojo */
+    color: black; /* Color del texto */
+    text-decoration: none; /* Quitar subrayado del enlace */
+    border-radius: 5px; /* Añadir esquinas redondeadas */
+    margin-top: 20px; /* Margen superior para separarlo del contenido anterior */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Añadir una sombra sutil */
+}
+
+a.añadir-actividad:hover {
+        opacity: 0.8;  
+        cursor: pointer;  
+}
+
+.galeria {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+    width: 100%;
+}
+
+.imagen {
+    display: none;
+}
+
+.imagen:first-child {
+    display: block;
+}
+
+button {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:focus {
+    outline: none;
+}
+
+
+

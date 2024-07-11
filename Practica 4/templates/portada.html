@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+
+
+
+{% block content %}
+    <div class="BoxActividades">
+        {% for actividad in actividades %}
+            <a class="BoxActividadesBox" href="actividad.php?id={{ actividad.id }}">
+                {% for imagen in imagenes %}
+                    {% if imagen.principal == 1 and imagen.idActividad == actividad.id %}
+                        <img class="ImagenActividadPortada" src="{{ imagen.urlImagen }}">
+                    {% endif %}
+                {% endfor %}
+                <h1 class="ActividadNombre">{{ actividad.titulo }}</h1>
+                <p class="ActividadDescripcion" style="display: none;">{{ actividad.descripcion}}</p>
+            </a>
+        {% endfor %}
+
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+
+   
+</script>
+<script src="/funciones.js"></script>
+{% endblock %}

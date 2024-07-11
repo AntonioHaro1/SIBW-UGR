@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+<div class="perfil-wrapper">
+    <div class="perfil">
+        <div>
+            <form method="POST" enctype="multipart/form-data" id="postAñadirActividad">
+                <label for="titulo">Titulo:</label>
+                <input id="titulo" name="titulo" value="Titulo" class="EstiloInput" required>
+
+                <label for="precio">Precio:</label>
+                <input id="precio" name="precio" value="00.00" class="EstiloInput" required>
+
+                <label for="fecha">Fecha:</label>
+                <input id="fecha" name="fecha" value="" class="EstiloInput" required>
+                
+                <label for="duracion">Duracion:</label>
+                <input id="duracion" name="duracion" value="00:00:00" class="EstiloInput" required>
+
+                <label for="descripcion">Descripcion:</label>
+                <textarea id="descripcion" name="descripcion">
+                    <div class="SeccionExplicacion">
+                        <h1>Titulo</h1>
+                        <p class="Texto">
+                            Primer parrafo introductivo
+                        </p>
+                        <h2>Titulo secundario</h2>
+                        <p class="Texto">
+                            Explicacion mas detallada de lo que se haria
+                        </p>
+                        <h2>dificultad de la actividad</h2>
+                        <p class="Texto">
+                            explica un poco el porque
+                        </p>
+                        <h2>Consejos para tu Aventura</h2>
+                        <p class="Texto">
+                        - Pon los consejos aqui.<br>
+                        - sigue el formato.<br>
+                        - :D.<br>
+                        - Sigue el formato de la pagina gracias<br><br> 
+                    </div>
+                </textarea>
+
+                <label for="descripcionImg">Descripcion imagen:</label>
+                <input id="descripcionImg" name="descripcionImg" value="Los niños lo pasan chupi" class="EstiloInput" required>
+
+                <label for="imagen">Seleccionar Imagen:</label>
+                <input type="file" name="imagen" id="imagen" required>
+
+
+                <button type="button" onclick="añadirActividad()" style="margin-top: 10px;">Insertar Actividad</button>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    // Obtener id de la fecha
+    var fechaInput = document.getElementById('fecha');
+
+    // Obtener la fecha actual
+    var fechaActual = new Date().toISOString().split('T')[0];
+
+    //  poner la fecha actual en el campo perteneciente
+    fechaInput.value = fechaActual;
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/funciones.js"></script>
+
+
+{% endblock %} 
+{% block footer %}
+{% endblock %}
+
+
