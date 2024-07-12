@@ -15,4 +15,4 @@ Cada práctica aborda diferentes aspectos del desarrollo web, desde el diseño e
 
 ## Uso de Docker
 
-Para facilitar el despliegue del servidor y la configuración del entorno de desarrollo, utilizamos Docker. Asegúrate de tener Docker instalado en tu sistema para poder ejecutar y probar las prácticas de manera consistente.
+Para facilitar el despliegue del servidor y la configuración del entorno de desarrollo, utilizamos Docker. 
